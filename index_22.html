@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이유진 · Developer</title>
+<meta name="description" content="이유진 — Developer">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0b0d13;
+    --surface:#171b26;
+    --ink:#eef0f6;
+    --ink-dim:#9aa0b4;
+    --line:rgba(238,240,246,0.1);
+    --accent:#00c9a7;
+    --accent-2:#7c6bf0;
+    --accent-ink:#04120f;
+    --radius:12px;
+    --font-display:'Space Grotesk', 'Pretendard Variable', sans-serif;
+    --font-body:'Pretendard Variable', 'Space Grotesk', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    color-scheme: dark;
+  }
+  html[data-theme="light"]{
+    --bg:#f7f6f2;
+    --surface:#ffffff;
+    --ink:#14161c;
+    --ink-dim:#63677a;
+    --line:rgba(20,22,28,0.1);
+    --accent:#00a189;
+    --accent-2:#5b46e0;
+    --accent-ink:#ffffff;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font-body);
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    transition:background .3s ease, color .3s ease;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+  .eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);}
+  ::selection{background:var(--accent); color:var(--accent-ink);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex; align-items:center; justify-content:space-between; height:60px;}
+  .brand{font-family:var(--font-display); font-weight:700; font-size:17px;}
+  .brand span{color:var(--accent);}
+  nav.links{display:flex; gap:24px; align-items:center;}
+  nav.links a, nav.links button.linklike{
+    font-size:14px; color:var(--ink-dim); transition:color .2s;
+    background:none; border:none; cursor:pointer; font-family:var(--font-body); padding:0;
+  }
+  nav.links a:hover, nav.links button.linklike:hover{color:var(--ink);}
+  .theme-btn{
+    width:36px; height:36px; border-radius:999px; border:1px solid var(--line); background:var(--surface);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink);
+  }
+  .theme-btn svg{width:17px; height:17px;}
+  .icon-sun{display:none;}
+  html[data-theme="light"] .icon-moon{display:none;}
+  html[data-theme="light"] .icon-sun{display:block;}
+  @media (max-width:760px){ nav.links a, nav.links button.linklike{display:none;} }
+
+  .hero{min-height:80svh; display:flex; flex-direction:column; justify-content:center; padding:60px 0 76px;}
+  .hero-role{font-family:var(--font-mono); font-size:13px; color:var(--ink-dim); letter-spacing:.04em; margin-bottom:20px;}
+  h1.hero-name{font-family:var(--font-display); font-weight:700; font-size:clamp(42px,8vw,88px); line-height:1.02; letter-spacing:-0.01em;}
+  .hero-name-en{
+    display:inline-block; margin-top:10px; font-size:clamp(15px,2vw,18px); font-weight:500;
+    letter-spacing:.14em; color:var(--accent); font-family:var(--font-mono);
+  }
+  .hero-tag{margin-top:22px; max-width:540px; font-size:clamp(15px,2vw,18px); color:var(--ink-dim);}
+  .hero-cta{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:14px; padding:12px 20px;
+    border-radius:999px; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line);
+    transition:border-color .18s ease, background .18s ease; cursor:pointer;
+  }
+  .btn-solid{background:var(--accent); color:var(--accent-ink); border-color:var(--accent);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--accent);}
+  .hero-tools{margin-top:44px; display:flex; gap:8px; flex-wrap:wrap;}
+  .pill{font-family:var(--font-mono); font-size:11.5px; padding:6px 12px; border:1px solid var(--line); border-radius:999px; color:var(--ink-dim);}
+
+  section{padding:84px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; flex-wrap:wrap;}
+  h2.section-title{font-family:var(--font-display); font-size:clamp(26px,3.6vw,36px); font-weight:700;}
+  .section-note{font-size:13.5px; color:var(--ink-dim); max-width:340px;}
+
+  .ea-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:760px){ .ea-grid{grid-template-columns:1fr;} }
+  .ea-item{padding:18px 0; border-bottom:1px solid var(--line);}
+  .ea-item:first-child{padding-top:0;}
+  .ea-title{font-weight:600; font-size:15.5px; margin-bottom:4px;}
+  .ea-meta{font-family:var(--font-mono); font-size:12.5px; color:var(--accent); margin-bottom:6px;}
+  .ea-desc{color:var(--ink-dim); font-size:13px; line-height:1.5;}
+  .cert-link{
+    background:none; border:none; padding:0; font-family:var(--font-body); font-size:13px;
+    color:var(--accent); font-weight:600; cursor:pointer;
+  }
+  .cert-link:hover{text-decoration:underline;}
+  .ext-link{font-family:var(--font-body); font-size:13px; color:var(--accent); font-weight:600;}
+  .ext-link:hover{text-decoration:underline;}
+
+  .timeline{border-top:1px solid var(--line);}
+  .tl-item{display:grid; grid-template-columns:140px 1fr; gap:20px; padding:22px 0; border-bottom:1px solid var(--line);}
+  @media (max-width:640px){ .tl-item{grid-template-columns:1fr;} }
+  .tl-date{font-family:var(--font-mono); font-size:12.5px; color:var(--accent);}
+  .tl-title{font-weight:600; font-size:15.5px; margin-bottom:5px;}
+  .tl-desc{color:var(--ink-dim); font-size:13.5px;}
+
+  .filter-row{display:flex; gap:8px; margin-bottom:34px; flex-wrap:wrap;}
+  .filter-btn{
+    font-family:var(--font-mono); font-size:12px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--line); background:transparent; color:var(--ink-dim); cursor:pointer; transition:all .16s;
+  }
+  .filter-btn.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+  html[data-theme="light"] .filter-btn.active{background:var(--ink); color:var(--surface);}
+
+  .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
+  @media (max-width:760px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; gap:12px; min-height:170px;
+    transition:border-color .18s;
+  }
+  .proj-card:hover{border-color:var(--accent);}
+  .proj-card.featured{grid-column:span 2;}
+  @media (max-width:760px){ .proj-card.featured{grid-column:span 1;} }
+  .proj-top{display:flex; justify-content:flex-end; align-items:flex-start; gap:12px;}
+  .proj-tags{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;}
+  .tag{font-family:var(--font-mono); font-size:10px; padding:4px 8px; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim);}
+  .proj-name{font-family:var(--font-display); font-size:18px; font-weight:700;}
+  .proj-desc{color:var(--ink-dim); font-size:13.5px; flex:1;}
+  .proj-thumb{width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:2px;}
+
+  .contact{text-align:center; padding:80px 0;}
+  .contact-links{display:flex; justify-content:center; gap:12px; margin-top:22px; flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--line); padding:24px 0; display:flex; justify-content:space-between; font-size:12px; color:var(--ink-dim); flex-wrap:wrap; gap:8px;}
+
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(6,7,10,0.6); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:24px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    max-width:640px; width:100%; max-height:82vh; overflow-y:auto; padding:36px;
+    position:relative;
+  }
+  .modal-close{
+    position:absolute; top:18px; right:18px; width:32px; height:32px; border-radius:999px;
+    border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .modal-box h3{font-family:var(--font-display); font-size:22px; margin-bottom:18px;}
+  .modal-box h4{font-family:var(--font-display); font-size:16px; margin:28px 0 12px; color:var(--accent);}
+  .modal-box p{font-size:14.5px; color:var(--ink-dim); margin-bottom:14px;}
+  .modal-box p strong{color:var(--ink); font-weight:600;}
+  .modal-box img.about-photo{width:100%; border-radius:10px; margin:6px 0 18px; display:block;}
+  .cert-box{max-width:720px;}
+  .cert-box img{width:100%; border-radius:8px; display:block;}
+  .cert-box iframe{width:100%; height:70vh; border:none; border-radius:8px; background:#fff;}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top">이유진</a>
+    <nav class="links">
+      <button type="button" class="linklike" id="aboutMeBtn">About Me</button>
+      <a href="#education">Education / Awards</a>
+      <a href="#career">Career</a>
+      <a href="#projects">Projects</a>
+      <button class="theme-btn" id="themeToggle" aria-label="테마 전환">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-top:none;">
+    <div class="wrap">
+      <div class="hero-role">DEVELOPER — SOONCHUNHYANG UNIV. METAVERSE &amp; GAME STUDIES</div>
+      <h1 class="hero-name">이유진<br><span class="hero-name-en">LEE YUJIN</span></h1>
+      <p class="hero-tag">일단 만들어서 확인하고, 확인된 것만 자신 있게 말하는 개발자입니다.</p>
+      <div class="hero-cta">
+        <button type="button" class="btn btn-solid" id="aboutMeBtn2">About Me</button>
+        <a class="btn btn-ghost" href="#projects">View Projects</a>
+        <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <div class="hero-tools">
+        <span class="pill">Unity</span><span class="pill">Unreal Engine</span><span class="pill">C#</span>
+        <span class="pill">C++</span><span class="pill">Python</span><span class="pill">OpenCV</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">EDUCATION / AWARDS</span><h2 class="section-title" style="margin-top:12px;">Education / Awards</h2></div>
+      </div>
+      <div class="ea-grid">
+        <div>
+          <div class="eyebrow" style="margin-bottom:14px;">Education</div>
+          <div class="ea-item">
+            <div class="ea-title">순천향대학교 · 메타버스&amp;게임학과</div>
+            <div class="ea-meta">2023.03 — 2027.02 (예정)</div>
+            <div class="ea-desc">GPA 4.08 / 4.5 (2026.07 기준, 1학기 남음)</div>
+          </div>
+          <div class="ea-item">
+            <div class="ea-title">SW융합대학 Dean's List (성적우수학생)</div>
+            <div class="ea-meta">2024학년도 2학기 · 2025학년도 2학기 · 2026학년도 1학기</div>
+            <div class="ea-desc"><button type="button" class="cert-link" data-src="certs/award-deanslist-2024-2.pdf" data-type="pdf" data-title="Dean's List — 2024학년도 2학기">2024-2 인증서 ↗</button> · <button type="button" class="cert-link" data-src="certs/award-deanslist-2025-2.pdf" data-type="pdf" data-title="Dean's List — 2025학년도 2학기">2025-2 인증서 ↗</button> · <span style="opacity:.6;">2026-1 인증서 발급 예정</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:14px;">Awards</div>
+          <div class="ea-item">
+            <div class="ea-title">2025년 한국디지털콘텐츠학회 하계종합학술대회 대학생 논문경진대회</div>
+            <div class="ea-meta">동상</div>
+            <div class="ea-desc">감정 인식 기반 페이셜 인터랙션을 활용한 콘텐츠 설계 및 구현 — 인터랙티브 스토리텔링 게임 &lt;Tales in Fragments&gt;을 중심으로 (공동저자: 권유담, 오제호) · <button type="button" class="cert-link" data-src="certs/award-dcs-bronze.jpeg" data-type="image" data-title="한국디지털콘텐츠학회 논문경진대회 · 동상">상장 ↗</button></div>
+          </div>
+          <div class="ea-item">
+            <div class="ea-title">NC AI 제2회 VARCO Voice 활용 게임제작 공모전</div>
+            <div class="ea-meta">가작 (팀 Triple J but O) · 수료</div>
+            <div class="ea-desc"><button type="button" class="cert-link" data-src="certs/award-ncai-honorable.jpeg" data-type="image" data-title="NC AI VARCO Voice 공모전 · 가작">가작 상장 ↗</button> · <button type="button" class="cert-link" data-src="certs/award-ncai-completion.jpeg" data-type="image" data-title="NC AI VARCO Voice 공모전 · 수료증">수료증 ↗</button></div>
+          </div>
+          <div class="ea-item">
+            <div class="ea-title">2024 SCHU AI·SW Festival 학과예선전</div>
+            <div class="ea-meta">장려상 (Halfly, 팀원: 강현수, 이유진)</div>
+            <div class="ea-desc"><button type="button" class="cert-link" data-src="certs/award-halfly.pdf" data-type="pdf" data-title="2024 SCHU AI·SW Festival · 장려상">상장 ↗</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">CAREER</span><h2 class="section-title" style="margin-top:12px;">Career</h2></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2026.07.06 — 07.10</div>
+          <div>
+            <div class="tl-title">휴먼인터페이스 디자인 실습 프로그램 · B팀</div>
+            <div class="tl-desc">서울대학교 대학연대 지역인재양성사업단 주관. 자율주행, 아이트래킹, 제스처 기반 생체인식 실험을 진행하고 팀 발표자료로 정리. <button type="button" class="cert-link" data-src="certs/career-camp-completion.pdf" data-type="pdf" data-title="휴먼인터페이스 디자인 실습 프로그램 · 이수증">이수증 ↗</button></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025.04 — 2025.11</div>
+          <div>
+            <div class="tl-title">순천향대학교 SW중심대학사업단 제4기 SW프런티어</div>
+            <div class="tl-desc">소프트웨어융합대학 학과별 선발제로 운영되는 AI·SW융합 리더 양성 프로그램. 경진대회, TOPCIT 시험, 코딩역량인증제, 현장견학, 단기집중교육, 세미나·특강 등에 참여. <button type="button" class="cert-link" data-src="certs/award-swfrontier.pdf" data-type="pdf" data-title="제4기 SW프런티어 · 활동인증서">활동인증서 ↗</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">PROJECTS</span><h2 class="section-title" style="margin-top:12px;">Projects</h2></div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="featured">Featured</button>
+        <button class="filter-btn" data-filter="team">Team</button>
+        <button class="filter-btn" data-filter="personal">Personal</button>
+      </div>
+
+      <div class="proj-grid" id="projGrid">
+
+        <article class="proj-card featured" data-cat="featured team">
+          <img class="proj-thumb" src="images/tales-in-fragments.png" alt="Tales in Fragments 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">Tales in Fragments</div>
+          <p class="proj-desc">감정 인식 기반 인터랙티브 스토리 게임. 3인칭 시점으로 맵을 탐색하며, 플레이어의 표정을 인식해 감정에 맞는 선택지를 자동으로 매핑하는 인터랙션 시스템을 구현 (예: 찡그린 표정 → '분노' 선택지로 오브젝트 수집). 2인 팀에서 유니티 엔진 내 전 작업과 클라이언트 개발을 담당, 개발 기간 8주. 2025 한국디지털콘텐츠학회 논문경진대회 동상 수상작.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/Tales-Unwritten" target="_blank" rel="noopener">GitHub ↗</a>
+            <button type="button" class="cert-link" data-src="2FUsWQzWs2U" data-type="youtube" data-title="Tales in Fragments · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card featured" data-cat="featured team">
+          <img class="proj-thumb" src="images/feelsogut.jpg" alt="FeelSoGut 시작 화면">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">FeelSoGut</div>
+          <p class="proj-desc">한국 무속 신앙을 소재로 한 리듬게임. 사이버펑크와 조선시대 무당 컨셉을 결합해, 각자의 사연을 가진 귀신을 리듬 액션으로 퇴치한다. 기획·개발·아트 3인 팀 '삼유스튜디오'에서 클라이언트 개발 담당. 충남콘텐츠진흥원 2026 미래 창작자 성장 과정 선발작으로 현재 개발 중이며, 2026년 9월 스토브인디 출시와 11월 지스타(G-STAR) 출품을 앞두고 있음.</p>
+        </article>
+
+        <article class="proj-card featured" data-cat="featured team">
+          <img class="proj-thumb" src="images/ridebound.png" alt="RIDE BOUND 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">RIDE BOUND</div>
+          <p class="proj-desc">시네마틱 턴제 RPG. 3인 팀에서 컷신 제작, 파이프라인·기술 지원, 기획 문서 정리를 담당. 시네머신(Cinemachine) 기반 컷신 제작에 사운드 AI 솔루션을 결합해 연출을 구현. 학교 프로젝트로 시작해 공모전까지 이어간 프로젝트로, 개발 기간 10주.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/RideBound" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://app.notion.com/p/Ridebound-2c7583ac7e2c8028ab73f18a21497302?pvs=21" target="_blank" rel="noopener">기획 노션 ↗</a>
+            <button type="button" class="cert-link" data-src="cnurqINDNLg" data-type="youtube" data-title="RIDE BOUND · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/varco-voice-studio.png" alt="VARCO Voice Studio 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity Plugin</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">NC VARCO VOICE</div>
+          <p class="proj-desc">NC AI의 VARCO TTS API를 유니티 에디터에 통합한 도구. 성우 검색부터 대사 생성, 파일 저장까지 엔진 내부에서 한 번에 처리할 수 있는 전용 에디터 윈도우로 구현. Seed 고정으로 생성 결과의 일관성을 확보했고, UnityWebRequest 기반 비동기 API 통신과 PasswordField로 API 키 보호까지 구현. 개인 학습 및 포트폴리오 목적의 베타 버전 (유니티 에셋스토어 심사 진행 중).</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/Varco-Voice-Studio-Unity?tab=readme-ov-file#varco-voice-studio-for-unity" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://github.com/yeuljliyn/Varco-Voice-Studio-Unity/releases/latest" target="_blank" rel="noopener">최신 버전 다운로드 ↗</a>
+            <button type="button" class="cert-link" data-src="ERFr07LoJi4" data-type="youtube" data-title="NC VARCO VOICE · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/urbandash.png" alt="UrbanDash 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">UrbanDash</div>
+          <p class="proj-desc">3D 러닝 액션 게임. 클라이언트 전체와 로컬 서버(계정 생성/로그인, 점수 데이터베이스 저장·불러오기)를 혼자 개발. 장애물 피격 시 HP 감소, 속도 업, 점수 시스템, 쉴드 아이템, 게임오버·랭크 테이블 기능 구현. 1인 개발, 개발 기간 2주.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/UrbanDash" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://www.canva.com/design/DAGY6NHA34g/pNzNpBIzyXdS-B8fWuSNvg/view?utm_content=DAGY6NHA34g&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5c1a758f9f" target="_blank" rel="noopener">기획서 ↗</a>
+            <button type="button" class="cert-link" data-src="l9LknDJO4Zs" data-type="youtube" data-title="UrbanDash · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <img class="proj-thumb" src="images/divid-and-rise.png" alt="Divid and Rise 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">Divid and Rise</div>
+          <p class="proj-desc">2D 플랫포머. 2인 팀에서 클라이언트 개발과 타일맵 디자인, 기믹 기획을 담당. 엘리베이터, 회전하는 통나무, 작용-반작용 트램펄린 발판 등 기믹과 일시정지 UI를 구현. 개발 기간 1개월.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/Divide-and-Rise" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://www.canva.com/design/DAGToPWJLzQ/bCIem_Ma-dlxJX3EeUX7HQ/view?utm_content=DAGToPWJLzQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdc79c1f21d" target="_blank" rel="noopener">기획서 ↗</a>
+            <button type="button" class="cert-link" data-src="VJIOUhvACQg" data-type="youtube" data-title="Divid and Rise · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <img class="proj-thumb" src="images/halfly.png" alt="Halfly 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">Halfly</div>
+          <p class="proj-desc">1인칭 슈팅 게임. 3인 팀에서 플레이어 이동, 스킬, 스탯 시스템 구현을 담당. Q키로 변신 시 플레이어 모델과 스킬 구성이 전환되고, 레벨업에 따라 스탯 수치가 변화하며 스킬 쿨타임을 UI로 시각화. 개발 기간 2주, 2024 SCHU AI·SW Festival 학과예선전 장려상 수상작.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://canva.link/57572fox3g2vzyu" target="_blank" rel="noopener">기획서 ↗</a>
+            <button type="button" class="cert-link" data-src="Cdo_vMKD6t8" data-type="youtube" data-title="Halfly · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/maze-of-four-mission.png" alt="The Maze of Four Mission 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unreal 5</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">The Maze of Four Mission</div>
+          <p class="proj-desc">언리얼엔진5 블루프린트 기반 미로 탈출 게임. 순서를 기억해 같은 순서로 버튼을 누르는 기믹 등 클라이언트 개발 전체를 1인으로 담당. 개발 기간 1주.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://www.canva.com/design/DAG1f0BjTIA/i3GpfACFWHrGyJwBj1RRhg/view?utm_content=DAG1f0BjTIA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h0e4935be40" target="_blank" rel="noopener">개요서 ↗</a>
+            <button type="button" class="cert-link" data-src="KaZDq2H5x0A" data-type="youtube" data-title="The Maze of Four Mission · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/meta-quest-tutorial.png" alt="Meta Quest 3 VR 그림판 튜토리얼 화면">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">Meta Quest 3 &amp; Unity AR/VR 그림판 튜토리얼</div>
+          <p class="proj-desc">Meta Quest 3 SDK 세팅부터 핸드 트래킹, 안드로이드 빌드까지 다루는 자체 제작 튜토리얼 영상. 핸드 트래킹 기반 핀치·브러쉬 제스처로 픽셀 색상을 바꾸는 VR 그림판을 직접 구현하며 개발 과정을 강의 형태로 정리.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/MetaQuest3_ARVR_Project" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://canva.link/52v887g8bztwzfz" target="_blank" rel="noopener">강의자료 ↗</a>
+            <button type="button" class="cert-link" data-src="NX25o4-3xgQ" data-type="youtube" data-title="Meta Quest 3 AR/VR 그림판 튜토리얼">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/gesture-presentation.png" alt="MediaPipe 제스처 프레젠테이션 제어 화면">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">MediaPipe · Web</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">제스처 기반 프레젠테이션 제어 솔루션</div>
+          <p class="proj-desc">MediaPipe Hands로 손 제스처를 인식해 PDF 프레젠테이션을 넘기는 웹 도구. OpenCV + MediaPipe Hands, JavaScript / CSS3 / HTML5로 구현했고, 발표자용 컨트롤러 화면과 청중용 클린 화면을 분리해 실제 발표 환경에서 바로 쓸 수 있게 만들었다.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/PoseSlide" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://hand-presentation.netlify.app/" target="_blank" rel="noopener">사용해보기 ↗</a>
+            <a class="ext-link" href="https://www.canva.com/design/DAG6zkmIRl8/DMMBeh6TIoDYRRzw2hS5Xw/view?utm_content=DAG6zkmIRl8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h9fcb82bb7b" target="_blank" rel="noopener">캔바에서 보기 ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <img class="proj-thumb" src="images/face-focusing-module.png" alt="OpenCV 안면 인식 포커싱 모듈 화면">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Python · OpenCV</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">OpenCV 기반 안면 인식 포커싱 모듈</div>
+          <p class="proj-desc">다수의 얼굴을 인식해 지정된 대상을 줌 인/아웃하는 모듈. OpenCV로 영상을 처리하고 InsightFace(SCRFD) 모델로 얼굴을 검출, Tkinter로 GUI를 구성. 슬라이더로 확대 비율을 실시간 조정하고 웹캠·영상 소스를 자유롭게 전환할 수 있으며, 1인 크리에이터 촬영이나 CCTV 추적 같은 용도를 염두에 두고 설계.</p>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">VR 사용자 설정 퀴즈 게임 메이커</div>
+          <p class="proj-desc">SBS 예능 '작렬정신통일'의 두뇌의 벽 코너를 모티브로 한 VR 콘텐츠. VR 핸드 포인트로 플레이어의 포즈를 인식해, 문제와 3개 선택지 중 정답에 해당하는 구멍에 맞는 포즈를 취하면 통과하는 방식. 퀴즈 문제를 사용자가 직접 커스터마이징할 수 있도록 퀴즈 메이커와 JSON 기반 퀴즈 데이터 내보내기 기능을 담당.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/QuizData" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Python · OpenCV</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">폐렴 영상 개선 및 성능 향상</div>
+          <p class="proj-desc">흉부 X-ray 영상 분석 정확도 향상을 위한 영상처리 파이프라인 설계. Grayscale 변환, CLAHE 대비 강화, Gaussian Blur 기반 샤프닝, 양방향 필터링(Bilateral Filtering), 이미지 정규화를 적용해 폐렴 진단 모델 정확도를 초기 0.55에서 최대 0.85까지 끌어올림.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/ImgProc_Homework" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="ext-link" href="https://canva.link/d5etxx7rai97nqj" target="_blank" rel="noopener">보고서 ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Java</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">KioskProject</div>
+          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
+        </article>
+
+        <article class="proj-card" data-cat="team">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Python · API</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">ChatGPT를 이용한 게임 NPC 생성</div>
+          <p class="proj-desc">ChatGPT API 연동. [소개 문구 추가 예정]</p>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Python</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">디스코드 학식 메뉴 봇</div>
+          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">C</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">온도 데이터 색상 출력 프로그램</div>
+          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
+        </article>
+
+        <article class="proj-card" data-cat="personal">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">C</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">도서 삽입 삭제 프로그램</div>
+          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" style="border-top:1px solid var(--line);">
+    <div class="wrap">
+      <span class="eyebrow">CONTACT</span>
+      <h2 class="section-title" style="margin-top:14px;">Contact</h2>
+      <div class="contact-links">
+        <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:8px;">
+    <span>Designed &amp; Built by 이유진 © 2026</span>
+    <span><a href="https://github.com/yeuljliyn" target="_blank" rel="noopener">github.com/yeuljliyn</a></span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="aboutModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <h3>About Me</h3>
+    <p><strong>새로운 기술을 배우는 일보다, 그 기술로 원하는 결과를 만드는 일이 더 재미있는 개발자입니다.</strong></p>
+    <p>제가 개발에 관심을 갖게 된 계기는 마인크래프트라는 게임이었습니다. 게임을 플레이하는 것보다 레드스톤 회로를 만들고 명령어를 조합해서 새로운 기능을 구현하는 시간이 훨씬 즐거웠습니다. 버튼 하나를 눌렀을 뿐인데 제가 만든 장치가 의도한 대로 움직이고, 생각했던 시스템이 실제로 동작하는 모습이 신기했습니다. 그때 처음으로 '직접 만드는 일'이 정말 재미있다는 걸 느꼈고, 자연스럽게 개발을 시작하게 되었습니다.</p>
+    <p>지금도 개발하는 방식은 크게 달라지지 않았습니다. 처음 보는 기술이 나오면 겁부터 먹기보다 일단 만들어 봅니다. AI와 공식 문서를 참고해서 간단한 프로토타입을 만들고, 실행해 보면서 하나씩 고칩니다. 오류가 생기면 원인을 찾고, 해결하면 또 다음 문제를 만나는 과정이 저한테는 스트레스보다 재미에 가깝습니다. 그래서 새로운 기술을 배울 때도 공부만 오래 하기보다 직접 부딪히면서 익히는 편입니다.</p>
+    <p>개발하면서 가장 기분 좋은 순간은 제가 만든 결과물을 다른 사람이 사용했을 때입니다. 프로젝트를 여러 번 수정하면서 완성도를 높이고, "재밌다", "생각보다 퀄리티가 좋다"는 피드백을 받을 때마다 다시 개발할 힘을 얻습니다. 그래서 저는 코드를 많이 작성한 날보다, 사용자가 만족하는 결과물을 만든 날을 더 기억합니다.</p>
+
+    <img class="about-photo" src="images/about-camp-group.jpg" alt="휴먼인터페이스 디자인 실습 캠프 단체사진">
+
+    <h4>Problem Solving</h4>
+    <p><strong>문제가 생기면 답을 찾기보다, 직접 해결 방법을 만들어 보는 편입니다.</strong></p>
+    <p>NC AI VARCO Voice 공모전에서 Unity 플러그인을 만들면서 가장 크게 느꼈습니다. 제공된 API 문서는 대부분 Python 예제로 작성되어 있었지만 프로젝트는 Unity(C#) 환경에서 개발하고 있었습니다. 단순히 문법만 바꾸면 될 줄 알았지만 실제로는 요청 방식, 데이터 처리, 비동기 흐름까지 전부 다시 맞춰야 했습니다.</p>
+    <p>처음에는 AI가 알려주는 방법대로 구현했지만 제대로 동작하지 않았습니다. 그래서 접근 방식을 바꿨습니다. Python 코드가 어떤 순서로 동작하는지 먼저 분석한 뒤 요청, 응답, 음성 생성 과정을 각각 분리해서 하나씩 구현했습니다. 작은 기능이 정상적으로 동작하면 다음 단계로 넘어가는 식으로 계속 검증했습니다.</p>
+    <p>몇 번이나 처음부터 다시 만들었지만 결국 Unity 안에서 바로 사용할 수 있는 플러그인을 완성했습니다. 이 경험 이후로는 처음 보는 기술이 나와도 "못 한다"는 생각보다 "어떻게 쪼개면 만들 수 있을까?"부터 생각하게 되었습니다.</p>
+
+    <h4>Communication</h4>
+    <p><strong>좋은 협업은 말을 많이 하는 것이 아니라, 같은 그림을 보는 것이라고 생각합니다.</strong></p>
+    <p>프로젝트를 하다 보면 기획서만 보고 개발하기 어려운 경우가 많았습니다. 같은 문장을 읽어도 사람마다 생각하는 결과가 달랐고, 실제로 구현이 끝난 뒤 기획자의 의도와 전혀 다른 기능이 나온 적도 있었습니다.</p>
+    <p>그 일을 겪고 나서는 개발을 시작하기 전에 제가 이해한 내용을 다시 설명하는 습관을 만들었습니다. "이 기능이 이런 방식으로 동작하는 것이 맞나요?"를 먼저 확인했고, 애매한 부분은 간단한 프로토타입을 만들어 기획자와 함께 보면서 방향을 맞췄습니다.</p>
+    <p>기획자도 이전보다 예외 상황과 세부 동작을 자세하게 작성하기 시작했고, 큰 수정이 필요한 경우가 눈에 띄게 줄었습니다. 그 경험 이후 저는 좋은 소통은 설명을 잘하는 것보다 서로 같은 결과를 떠올리고 있는지 확인하는 과정이라고 생각하게 되었습니다.</p>
+
+    <img class="about-photo" src="images/about-teamwork.jpg" alt="팀원들과 회의하는 모습">
+
+    <h4>Resource Management</h4>
+    <p><strong>반복되는 작업을 발견하면, 사람보다 도구가 하는 것이 맞는지 먼저 생각합니다.</strong></p>
+    <p>리듬게임 프로젝트에서는 스테이지마다 노트를 하나씩 입력해야 했습니다. 개발자가 계속 데이터를 입력하는 방식은 시간이 오래 걸렸고, 기획자도 원하는 패턴을 직접 수정하기 어려웠습니다.</p>
+    <p>그래서 Unity 에디터 안에서 사용할 수 있는 비트메이커 툴을 만들었습니다. 기획자가 직접 노트를 배치하고 바로 플레이해 볼 수 있는 도구였습니다.</p>
+    <p>도구를 만든 이후에는 기획자가 직접 데이터를 만들 수 있게 되었고, 저는 반복 작업 대신 게임 시스템 개발에 집중할 수 있었습니다. 한 번 만든 도구는 이후 스테이지에서도 그대로 사용할 수 있었기 때문에 프로젝트가 진행될수록 작업 속도도 자연스럽게 빨라졌습니다.</p>
+    <p>예전에는 개발 속도를 높이는 방법만 고민했다면, 지금은 반복되는 작업 자체를 없애는 방법을 먼저 고민합니다.</p>
+
+    <h4>User Experience</h4>
+    <p><strong>기능이 완성됐다고 생각하는 순간은 코드가 끝났을 때가 아니라, 좋은 반응을 들었을 때입니다.</strong></p>
+    <p>NC AI 공모전 프로젝트에서는 컷신 연출과 구현을 맡았습니다. 이전부터 꼭 해보고 싶었던 분야였지만 제대로 만들어 본 것은 처음이었습니다. 카메라 움직임, 캐릭터 동선, 음성 타이밍까지 계속 수정하면서 조금이라도 더 자연스럽게 보이도록 여러 번 손봤습니다.</p>
+    <p>최종 발표가 끝난 뒤 "학생들이 만든 프로젝트라고 생각하지 못할 정도로 퀄리티가 좋았다."는 평가를 들었습니다. 특히 컷신 이야기가 나왔을 때 가장 기뻤습니다. 제가 직접 연출한 장면이 다른 사람에게도 그대로 전달됐다는 뜻이었기 때문입니다.</p>
+    <p>그 이후부터는 새로운 기능을 만드는 것보다 사용자가 어떻게 느끼는지를 더 많이 생각하게 되었습니다. 결국 개발은 코드를 보여주는 일이 아니라 경험을 만드는 일이라고 생각합니다.</p>
+
+    <h4>Growth</h4>
+    <p><strong>한 가지 문제에 끝까지 몰입하는 것이 제 장점이자 가장 큰 단점이었습니다.</strong></p>
+    <p>문제가 생기면 해결할 때까지 계속 붙잡고 있는 편입니다. 덕분에 어려운 오류도 많이 해결했지만, 반대로 하나의 문제에 너무 오래 시간을 쓰는 경우도 많았습니다.</p>
+    <p>이 습관을 바꾸기 위해 작업을 최대한 작은 단위로 나누기 시작했습니다. 일정 시간을 정해 놓고 작업한 뒤에는 현재 상태를 기록하고, 다음 작업으로 넘어갈지 계속 진행할지 다시 판단했습니다.</p>
+    <p>처음에는 흐름이 끊기는 것 같았지만 오히려 프로젝트 전체를 보는 시야가 생겼습니다. 지금은 문제 하나를 빨리 해결하는 것보다, 프로젝트 전체를 끝까지 완성하는 것이 더 중요하다고 생각합니다.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="certModal">
+  <div class="modal-box cert-box">
+    <button class="modal-close" id="certClose" aria-label="닫기">✕</button>
+    <h3 id="certTitle"></h3>
+    <div id="certBody"></div>
+  </div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const stored = localStorage.getItem('yj-theme');
+  if(stored === 'light') root.setAttribute('data-theme', 'light');
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if(isLight){ root.removeAttribute('data-theme'); localStorage.setItem('yj-theme','dark'); }
+    else { root.setAttribute('data-theme','light'); localStorage.setItem('yj-theme','light'); }
+  });
+
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.proj-card');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        const cats = c.dataset.cat.split(' ');
+        c.style.display = (f === 'all' || cats.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+
+  const modal = document.getElementById('aboutModal');
+  function openModal(){ modal.classList.add('open'); }
+  function closeModal(){ modal.classList.remove('open'); }
+  document.getElementById('aboutMeBtn').addEventListener('click', openModal);
+  document.getElementById('aboutMeBtn2').addEventListener('click', openModal);
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+  const certModal = document.getElementById('certModal');
+  const certTitle = document.getElementById('certTitle');
+  const certBody = document.getElementById('certBody');
+  function openCert(src, type, title){
+    certTitle.textContent = title || '인증서';
+    certBody.innerHTML = type === 'pdf'
+      ? `<iframe src="${src}"></iframe>`
+      : type === 'video'
+      ? `<video src="${src}" controls autoplay style="width:100%; border-radius:8px;"></video>`
+      : type === 'youtube'
+      ? `<iframe src="https://www.youtube.com/embed/${src}?autoplay=1" style="width:100%; height:56vw; max-height:70vh; border:none; border-radius:8px;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+      : `<img src="${src}" alt="${title || '인증서'}">`;
+    certModal.classList.add('open');
+  }
+  function closeCert(){ certModal.classList.remove('open'); certBody.innerHTML = ''; }
+  document.querySelectorAll('.cert-link').forEach(btn => {
+    btn.addEventListener('click', () => openCert(btn.dataset.src, btn.dataset.type, btn.dataset.title));
+  });
+  document.getElementById('certClose').addEventListener('click', closeCert);
+  certModal.addEventListener('click', (e) => { if(e.target === certModal) closeCert(); });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ closeModal(); closeCert(); }
+  });
+</script>
+
+</body>
+</html>
