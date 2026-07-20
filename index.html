@@ -147,7 +147,13 @@
   .tag{font-family:var(--font-mono); font-size:10px; padding:4px 8px; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim);}
   .proj-name{font-family:var(--font-display); font-size:18px; font-weight:700;}
   .proj-desc{color:var(--ink-dim); font-size:13.5px; flex:1;}
-  .proj-thumb{width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:2px;}
+  .proj-thumb{
+    width:100%; height:170px; object-fit:contain; object-position:center;
+    background:color-mix(in srgb, var(--surface) 60%, black 10%);
+    border-radius:8px; margin-bottom:2px;
+  }
+  .proj-card.featured .proj-thumb{height:320px;}
+  @media (max-width:760px){ .proj-card.featured .proj-thumb{height:220px;} }
 
   .contact{text-align:center; padding:80px 0;}
   .contact-links{display:flex; justify-content:center; gap:12px; margin-top:22px; flex-wrap:wrap;}
@@ -177,6 +183,10 @@
   .cert-box{max-width:720px;}
   .cert-box img{width:100%; border-radius:8px; display:block;}
   .cert-box iframe{width:100%; height:70vh; border:none; border-radius:8px; background:#fff;}
+  .cert-box.video-box{max-width:1180px;}
+  .cert-box.video-box .video-wrap{position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden; background:#000;}
+  .cert-box.video-box .video-wrap iframe,
+  .cert-box.video-box .video-wrap video{position:absolute; inset:0; width:100%; height:100%; border:none; border-radius:8px;}
 </style>
 </head>
 <body>
@@ -267,7 +277,7 @@
         <div class="tl-item">
           <div class="tl-date">2026.07.06 — 07.10</div>
           <div>
-            <div class="tl-title">휴먼인터페이스 디자인 실습 프로그램 · B팀</div>
+            <div class="tl-title">휴먼인터페이스 디자인 실습 프로그램</div>
             <div class="tl-desc">서울대학교 대학연대 지역인재양성사업단 주관. 자율주행, 아이트래킹, 제스처 기반 생체인식 실험을 진행하고 팀 발표자료로 정리. <button type="button" class="cert-link" data-src="certs/career-camp-completion.pdf" data-type="pdf" data-title="휴먼인터페이스 디자인 실습 프로그램 · 이수증">이수증 ↗</button></div>
           </div>
         </div>
@@ -295,20 +305,7 @@
         <button class="filter-btn" data-filter="personal">Personal</button>
       </div>
 
-      <div class="proj-grid" id="projGrid">
-
-        <article class="proj-card featured" data-cat="featured team">
-          <img class="proj-thumb" src="images/tales-in-fragments.png" alt="Tales in Fragments 게임 스크린샷">
-          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
-          <div class="proj-name">Tales in Fragments</div>
-          <p class="proj-desc">감정 인식 기반 인터랙티브 스토리 게임. 3인칭 시점으로 맵을 탐색하며, 플레이어의 표정을 인식해 감정에 맞는 선택지를 자동으로 매핑하는 인터랙션 시스템을 구현 (예: 찡그린 표정 → '분노' 선택지로 오브젝트 수집). 2인 팀에서 유니티 엔진 내 전 작업과 클라이언트 개발을 담당, 개발 기간 8주. 2025 한국디지털콘텐츠학회 논문경진대회 동상 수상작.</p>
-          <div style="display:flex; gap:14px; flex-wrap:wrap;">
-            <a class="ext-link" href="https://github.com/yeuljliyn/Tales-Unwritten" target="_blank" rel="noopener">GitHub ↗</a>
-            <button type="button" class="cert-link" data-src="2FUsWQzWs2U" data-type="youtube" data-title="Tales in Fragments · 시연 영상">시연 영상 ↗</button>
-          </div>
-        </article>
-
-        <article class="proj-card featured" data-cat="featured team">
+      <div class="proj-grid" id="projGrid"><article class="proj-card featured" data-cat="featured team">
           <img class="proj-thumb" src="images/feelsogut.jpg" alt="FeelSoGut 시작 화면">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
           <div class="proj-name">FeelSoGut</div>
@@ -324,6 +321,19 @@
             <a class="ext-link" href="https://github.com/yeuljliyn/RideBound" target="_blank" rel="noopener">GitHub ↗</a>
             <a class="ext-link" href="https://app.notion.com/p/Ridebound-2c7583ac7e2c8028ab73f18a21497302?pvs=21" target="_blank" rel="noopener">기획 노션 ↗</a>
             <button type="button" class="cert-link" data-src="cnurqINDNLg" data-type="youtube" data-title="RIDE BOUND · 시연 영상">시연 영상 ↗</button>
+          </div>
+        </article>
+
+        
+
+        <article class="proj-card featured" data-cat="featured team">
+          <img class="proj-thumb" src="images/tales-in-fragments.png" alt="Tales in Fragments 게임 스크린샷">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
+          <div class="proj-name">Tales in Fragments</div>
+          <p class="proj-desc">감정 인식 기반 인터랙티브 스토리 게임. 3인칭 시점으로 맵을 탐색하며, 플레이어의 표정을 인식해 감정에 맞는 선택지를 자동으로 매핑하는 인터랙션 시스템을 구현 (예: 찡그린 표정 → '분노' 선택지로 오브젝트 수집). 2인 팀에서 유니티 엔진 내 전 작업과 클라이언트 개발을 담당, 개발 기간 8주. 2025 한국디지털콘텐츠학회 논문경진대회 동상 수상작.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://github.com/yeuljliyn/Tales-Unwritten" target="_blank" rel="noopener">GitHub ↗</a>
+            <button type="button" class="cert-link" data-src="2FUsWQzWs2U" data-type="youtube" data-title="Tales in Fragments · 시연 영상">시연 영상 ↗</button>
           </div>
         </article>
 
@@ -576,20 +586,23 @@
   modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
 
   const certModal = document.getElementById('certModal');
+  const certBox = document.querySelector('#certModal .cert-box');
   const certTitle = document.getElementById('certTitle');
   const certBody = document.getElementById('certBody');
   function openCert(src, type, title){
     certTitle.textContent = title || '인증서';
+    const isVideo = type === 'video' || type === 'youtube';
+    certBox.classList.toggle('video-box', isVideo);
     certBody.innerHTML = type === 'pdf'
       ? `<iframe src="${src}"></iframe>`
       : type === 'video'
-      ? `<video src="${src}" controls autoplay style="width:100%; border-radius:8px;"></video>`
+      ? `<div class="video-wrap"><video src="${src}" controls autoplay></video></div>`
       : type === 'youtube'
-      ? `<iframe src="https://www.youtube.com/embed/${src}?autoplay=1" style="width:100%; height:56vw; max-height:70vh; border:none; border-radius:8px;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+      ? `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${src}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
       : `<img src="${src}" alt="${title || '인증서'}">`;
     certModal.classList.add('open');
   }
-  function closeCert(){ certModal.classList.remove('open'); certBody.innerHTML = ''; }
+  function closeCert(){ certModal.classList.remove('open'); certBody.innerHTML = ''; certBox.classList.remove('video-box'); }
   document.querySelectorAll('.cert-link').forEach(btn => {
     btn.addEventListener('click', () => openCert(btn.dataset.src, btn.dataset.type, btn.dataset.title));
   });
