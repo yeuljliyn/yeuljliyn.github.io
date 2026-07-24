@@ -78,9 +78,9 @@
   @media (max-width:760px){ nav.links a, nav.links button.linklike{display:none;} }
 
   .hero{min-height:80svh; display:flex; flex-direction:column; justify-content:center; padding:60px 0 76px;}
-  .hero-grid{display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center;}
+  .hero-grid{display:grid; grid-template-columns:1fr auto; gap:36px; align-items:center;}
   .hero-photo{
-    width:320px; height:420px; object-fit:cover; border-radius:16px; border:1px solid var(--line);
+    width:280px; height:370px; object-fit:cover; border-radius:16px; border:1px solid var(--line);
     justify-self:end;
   }
   @media (max-width:820px){
@@ -94,9 +94,10 @@
     letter-spacing:.14em; color:var(--accent); font-family:var(--font-mono);
   }
   .hero-tag{margin-top:22px; max-width:540px; font-size:clamp(15px,2vw,18px); color:var(--ink-dim);}
-  .hero-cta{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+  .hero-tag-name{font-weight:700; color:var(--accent);}
+  .hero-cta{display:flex; gap:10px; margin-top:32px; flex-wrap:wrap;}
   .btn{
-    font-family:var(--font-body); font-weight:600; font-size:14px; padding:12px 20px;
+    font-family:var(--font-body); font-weight:600; font-size:13.5px; padding:11px 17px;
     border-radius:999px; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line);
     transition:border-color .18s ease, background .18s ease; cursor:pointer;
   }
@@ -223,7 +224,7 @@
         <div>
           <div class="hero-role">DEVELOPER — SOONCHUNHYANG UNIV. METAVERSE &amp; GAME STUDIES</div>
           <h1 class="hero-name">이유진<br><span class="hero-name-en">LEE YUJIN</span></h1>
-          <p class="hero-tag">일단 만들어서 확인하고, 확인된 것만 자신 있게 말하는 개발자입니다.</p>
+          <p class="hero-tag">직접 만들면서 배우는 개발자 <span class="hero-tag-name">이유진</span>입니다.</p>
           <div class="hero-cta">
             <button type="button" class="btn btn-solid" id="aboutMeBtn2">About Me</button>
             <a class="btn btn-ghost" href="#projects">View Projects</a>
