@@ -78,6 +78,15 @@
   @media (max-width:760px){ nav.links a, nav.links button.linklike{display:none;} }
 
   .hero{min-height:80svh; display:flex; flex-direction:column; justify-content:center; padding:60px 0 76px;}
+  .hero-grid{display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center;}
+  .hero-photo{
+    width:320px; height:420px; object-fit:cover; border-radius:16px; border:1px solid var(--line);
+    justify-self:end;
+  }
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .hero-photo{width:220px; height:290px; justify-self:start; order:-1;}
+  }
   .hero-role{font-family:var(--font-mono); font-size:13px; color:var(--ink-dim); letter-spacing:.04em; margin-bottom:20px;}
   h1.hero-name{font-family:var(--font-display); font-weight:700; font-size:clamp(42px,8vw,88px); line-height:1.02; letter-spacing:-0.01em;}
   .hero-name-en{
@@ -210,19 +219,24 @@
 <main id="top">
   <section class="hero" style="border-top:none;">
     <div class="wrap">
-      <div class="hero-role">DEVELOPER — SOONCHUNHYANG UNIV. METAVERSE &amp; GAME STUDIES</div>
-      <h1 class="hero-name">이유진<br><span class="hero-name-en">LEE YUJIN</span></h1>
-      <p class="hero-tag">일단 만들어서 확인하고, 확인된 것만 자신 있게 말하는 개발자입니다.</p>
-      <div class="hero-cta">
-        <button type="button" class="btn btn-solid" id="aboutMeBtn2">About Me</button>
-        <a class="btn btn-ghost" href="#projects">View Projects</a>
-        <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
-        <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
-      </div>
-      <div class="hero-tools">
-        <span class="pill">Unity</span><span class="pill">Unreal Engine</span><span class="pill">C#</span>
-        <span class="pill">C++</span><span class="pill">Python</span><span class="pill">OpenCV</span>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-role">DEVELOPER — SOONCHUNHYANG UNIV. METAVERSE &amp; GAME STUDIES</div>
+          <h1 class="hero-name">이유진<br><span class="hero-name-en">LEE YUJIN</span></h1>
+          <p class="hero-tag">일단 만들어서 확인하고, 확인된 것만 자신 있게 말하는 개발자입니다.</p>
+          <div class="hero-cta">
+            <button type="button" class="btn btn-solid" id="aboutMeBtn2">About Me</button>
+            <a class="btn btn-ghost" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
+            <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
+          </div>
+          <div class="hero-tools">
+            <span class="pill">Unity</span><span class="pill">Unreal Engine</span><span class="pill">C#</span>
+            <span class="pill">C++</span><span class="pill">Python</span><span class="pill">OpenCV</span>
+          </div>
+        </div>
+        <img class="hero-photo" src="images/profile.jpg" alt="이유진 프로필 사진">
       </div>
     </div>
   </section>
