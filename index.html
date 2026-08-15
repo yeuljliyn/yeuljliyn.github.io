@@ -230,7 +230,6 @@
             <a class="btn btn-ghost" href="#projects">View Projects</a>
             <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
             <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
           </div>
           <div class="hero-tools">
             <span class="pill">Unity</span><span class="pill">Unreal Engine</span><span class="pill">C#</span>
@@ -251,9 +250,8 @@
         <div>
           <div class="eyebrow" style="margin-bottom:14px;">Education</div>
           <div class="ea-item">
-            <div class="ea-title">순천향대학교 · 메타버스&amp;게임학과</div>
+            <div class="ea-title">순천향대학교 · 메타버스&amp;게임학과 · GPA 4.08 / 4.5</div>
             <div class="ea-meta">2023.03 — 2027.02 (예정)</div>
-            <div class="ea-desc">GPA 4.08 / 4.5 (2026.07 기준, 1학기 남음)</div>
           </div>
           <div class="ea-item">
             <div class="ea-title">SW융합대학 Dean's List (성적우수학생)</div>
@@ -320,14 +318,26 @@
         <button class="filter-btn" data-filter="personal">Personal</button>
       </div>
 
-      <div class="proj-grid" id="projGrid"><article class="proj-card featured" data-cat="featured team">
+      <div class="proj-grid" id="projGrid">
+
+        <article class="proj-card" data-cat="personal">
+          <img class="proj-thumb" src="images/cpp-logo.png" alt="C/C++ 로고">
+          <div class="proj-top"><div class="proj-tags"><span class="tag">C++</span><span class="tag">Personal</span></div></div>
+          <div class="proj-name">C / C++</div>
+          <p class="proj-desc">인터넷 검색이나 AI 도움 없이, 자료구조와 알고리즘을 직접 코드로 짜보는 연습 기록.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="ext-link" href="https://juvenile-botany-010.notion.site/C-3bd583ac7e2c80a5bd0ecd32fd06b816?source=copy_link" target="_blank" rel="noopener">노션에서 보기 ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card" data-cat="featured team">
           <img class="proj-thumb" src="images/feelsogut.jpg" alt="FeelSoGut 시작 화면">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
           <div class="proj-name">FeelSoGut</div>
           <p class="proj-desc">한국 무속 신앙을 소재로 한 리듬게임. 사이버펑크와 조선시대 무당 컨셉을 결합해, 각자의 사연을 가진 귀신을 리듬 액션으로 퇴치한다. 기획·개발·아트 3인 팀 '삼유스튜디오'에서 클라이언트 개발 담당. 충남콘텐츠진흥원 2026 미래 창작자 성장 과정 선발작으로 현재 개발 중이며, 2026년 9월 스토브인디 출시와 11월 지스타(G-STAR) 출품을 앞두고 있음.</p>
         </article>
 
-        <article class="proj-card featured" data-cat="featured team">
+        <article class="proj-card" data-cat="featured team">
           <img class="proj-thumb" src="images/ridebound.png" alt="RIDE BOUND 게임 스크린샷">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 6</span><span class="tag">Team</span></div></div>
           <div class="proj-name">RIDE BOUND</div>
@@ -341,7 +351,7 @@
 
         
 
-        <article class="proj-card featured" data-cat="featured team">
+        <article class="proj-card" data-cat="featured team">
           <img class="proj-thumb" src="images/tales-in-fragments.png" alt="Tales in Fragments 게임 스크린샷">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Unity 5</span><span class="tag">Team</span></div></div>
           <div class="proj-name">Tales in Fragments</div>
@@ -461,36 +471,20 @@
         </article>
 
         <article class="proj-card" data-cat="team">
+          <img class="proj-thumb" src="images/kiosk-project.png" alt="KioskProject 콘솔 화면">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Java</span><span class="tag">Team</span></div></div>
           <div class="proj-name">KioskProject</div>
-          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
+          <p class="proj-desc">콘솔 기반 키오스크 프로그램. 화면에 안내 문구와 선택지를 출력하고 번호를 입력받아 요금제 선택, 좌석 선택, 결제까지 이어지는 입출력 흐름을 Java로 구현. 대학교 1학년 때 진행한 팀 프로젝트.</p>
         </article>
 
         <article class="proj-card" data-cat="team">
+          <img class="proj-thumb" src="images/gpt-npc.png" alt="ChatGPT API 기반 NPC 대화 화면">
           <div class="proj-top"><div class="proj-tags"><span class="tag">Python · API</span><span class="tag">Team</span></div></div>
           <div class="proj-name">ChatGPT를 이용한 게임 NPC 생성</div>
-          <p class="proj-desc">ChatGPT API 연동. [소개 문구 추가 예정]</p>
+          <p class="proj-desc">OpenAI ChatGPT API를 연동해 NPC를 만드는 프로그램. 컨셉, 말투, 친절함 정도 같은 설정값을 입력하면 그 성격이 반영된 NPC와 실시간으로 대화해볼 수 있도록 Python으로 구현. 대학교 1학년 때 진행한 팀 프로젝트.</p>
         </article>
 
-        <article class="proj-card" data-cat="personal">
-          <div class="proj-top"><div class="proj-tags"><span class="tag">Python</span><span class="tag">Personal</span></div></div>
-          <div class="proj-name">디스코드 학식 메뉴 봇</div>
-          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
-        </article>
-
-        <article class="proj-card" data-cat="personal">
-          <div class="proj-top"><div class="proj-tags"><span class="tag">C</span><span class="tag">Personal</span></div></div>
-          <div class="proj-name">온도 데이터 색상 출력 프로그램</div>
-          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
-        </article>
-
-        <article class="proj-card" data-cat="personal">
-          <div class="proj-top"><div class="proj-tags"><span class="tag">C</span><span class="tag">Personal</span></div></div>
-          <div class="proj-name">도서 삽입 삭제 프로그램</div>
-          <p class="proj-desc">[프로젝트 소개 문구 추가 예정]</p>
-        </article>
-
-      </div>
+              </div>
     </div>
   </section>
 
@@ -501,7 +495,6 @@
       <div class="contact-links">
         <a class="btn btn-ghost" href="mailto:elly3385@gmail.com">elly3385@gmail.com</a>
         <a class="btn btn-ghost" href="https://github.com/yeuljliyn" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn btn-ghost" href="https://velog.io/@yeuljliyn/posts" target="_blank" rel="noopener">Blog</a>
       </div>
     </div>
   </section>
